@@ -1,6 +1,9 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+
 
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
@@ -10,6 +13,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
@@ -20,9 +24,23 @@ import AddComment from "./pages/AddComment/AddComment";
 
 
 function App() {
+
+  const [videos, setVideos] = useState([])
+
+  useEffect(() => {
+    getAllVideos()
+  }, [])
+
+  async function getAllVideos(){
+    console.log()
+  }
+
   return (
     <div>
+      
       <Navbar />
+      <SearchBar />
+      {/* <SearchBar filterVideos={filterVideos} /> */}
       <Routes>
         <Route
           path="/"

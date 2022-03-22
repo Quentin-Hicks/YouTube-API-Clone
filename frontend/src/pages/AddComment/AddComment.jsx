@@ -38,6 +38,7 @@ const AddComment = () => {
     
     return (
         <div className="container">
+
             <form className="form" onSubmit={handleSubmit}>
                 <label>
                     User:{" "}
