@@ -23,24 +23,37 @@ import AddComment from "./pages/AddComment/AddComment";
 
 
 
-function App() {
+function App(props) {
 
-  const [videos, setVideos] = useState([])
+  const [videos, setVideos] = useState([]) // let videos = []
+  const [filteredVideo, filterVideos] = useState('stand up comedy') //let filteredVideo = 'stand up comedy'
+
+  async function fetchVideos(){
+    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${filteredVideo}&key={AIzaSyBM5RBhnrQ0NHkQcgsfiO6jayw4MBkW6jA}`, videos)
+    setVideos(response.data.results)
+    console.log(response.data.results)
+  }
 
   useEffect(() => {
-    getAllVideos()
+    console.log('use effect')
+    let mounted = true
+    if(mounted){
+      fetchVideos()
+    }
+    return () => mounted = false
   }, [])
 
-  async function getAllVideos(){
-    console.log()
+  function mapVideos(){
+    return videos.map(video =>
+      console.log('map')
+      )
   }
 
   return (
     <div>
       
       <Navbar />
-      <SearchBar />
-      {/* <SearchBar filterVideos={filterVideos} /> */}
+      <SearchBar fetchVideos={fetchVideos}/>
       <Routes>
         <Route
           path="/"
