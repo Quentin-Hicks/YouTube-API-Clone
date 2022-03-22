@@ -14,6 +14,11 @@ import Footer from "./components/Footer/Footer";
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 
+// import for adding comment 
+import AddComment from "./pages/AddComment/AddComment";
+
+
+
 function App() {
   return (
     <div>
@@ -29,6 +34,7 @@ function App() {
         />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/addcomment" element={<PrivateRoute><AddComment /></PrivateRoute>} />
       </Routes>
       <Footer />
     </div>
